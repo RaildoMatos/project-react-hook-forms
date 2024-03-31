@@ -15,6 +15,7 @@ const schema = z.object({
   gender: z.string().optional(),
   phone: z.string().optional(),
   address: z.string().optional(),
+  serviceType: z.string().min(1).nonempty(),
 });
 
 function CadastroUsuario({ onSubmit }) {
@@ -39,7 +40,7 @@ function CadastroUsuario({ onSubmit }) {
 
   return (
     <div className="CadastroUsuario">
-      <h1>Formulário de Cadastro</h1>
+      <h1>Formulário de Cadastro de prestador de serviço</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Nome:</label>
         <input type="text" {...register("name")} />
@@ -103,6 +104,9 @@ function CadastroUsuario({ onSubmit }) {
         <label>Endereço:</label>
         <input type="text" {...register("address")} />
         {errors.address && <p>{errors.address.message}</p>}
+        <label>Tipo de Serviço:</label>
+        <input type="text" {...register("serviceType")} />
+        {errors.serviceType && <p>{errors.serviceType.message}</p>}
 
         <button class="submit" type="submit">
           Cadastrar
